@@ -34,7 +34,7 @@ class AnswersTableSeeder extends Seeder
         //         }
         //  }
 
-        for ($i=0; $i <=count($data); $i++) {
+        for ($i=0; $i < count($data); $i++) {
             $question_id = DB::table('questions')->where('label', '=', $data[$i]['data']['label'])->first()->id;
 
             // for ($i = 0; $i < count($data); $i++) {
