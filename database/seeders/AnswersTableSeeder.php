@@ -19,10 +19,10 @@ class AnswersTableSeeder extends Seeder
     {
         $path = "public/json/questions.json";
         $detail = file_get_contents($path);
-        $data = json_decode($detail,true);
+        $data = json_decode($detail, true);
 
         //  for ($i=0; $i <count($data); $i++) { 
-            
+
         //         if ($data[$i]['type'] == "checkbox"){
         //       print_r($data[$i]['data']['values']);
         //         }
@@ -33,54 +33,57 @@ class AnswersTableSeeder extends Seeder
         //             print_r($data[$i]['data']['answer']);
         //         }
         //  }
-            
-         foreach( $data as $answer){
-            $question_id = DB::table('questions')->where('label', '=', $answer['data']['label'])->first()->id;
-            
-            for ($i=0; $i <count($data); $i++) { 
-            
-                if ($data[$i]['type'] == "checkbox"){
-             $checkboxAnswer =($data[$i]['data']['values']);
-             
-             Answer::create(
-                 array(
-                     
-                    'answer'=> $checkboxAnswer[$i],
-                 
-                    'isValid'=> 1,
-                 
-                    'question_id'=>$question_id,
-                )
-                 )->save();;
+
+        for ($i=0; $i <=count($data); $i++) {
+            $question_id = DB::table('questions')->where('label', '=', $data[$i]['data']['label'])->first()->id;
+
+            // for ($i = 0; $i < count($data); $i++) {
+
+                if ($data[$i]['type'] === "checkbox") {
+                    $checkboxAnswer = ($data[$i]['data']['values']);
+                    for ($y=0; $y <count($checkboxAnswer) ; $y++) { 
+                        
+                    Answer::create(
+                        array(
+
+                            'answer' => $checkboxAnswer[$y],
+
+                            'isValid' => 1,
+
+                            'question_id' => $question_id,
+                        )
+                    )->save();;
+                    }
+                } 
+                if ($data[$i]['type'] === "radio") {
+                    $radioAnswer = ($data[$i]['data']['values']);
+                     for ($y=0; $y <count($radioAnswer) ; $y++) { 
+                    Answer::create(
+                        array(
+
+                            'answer' => $radioAnswer[$y],
+
+                            'isValid' => 1,
+
+                            'question_id' => $question_id,
+                        )
+                    )->save();
+                    }
+                } 
+                if ($data[$i]['type'] === "text") {
+                    $textAnswer = ($data[$i]['data']['answer']);
+                    Answer::create(
+                        array(
+
+                            'answer' => $textAnswer,
+
+                            'isValid' => 1,
+
+                            'question_id' => $question_id,
+                        )
+                    )->save();
                 }
-                elseif ($data[$i]['type'] == "radio") {
-                      $radioAnswer = ($data[$i]['data']['values']);
-                       Answer::create(
-                 array(
-                     
-                    'answer'=> $radioAnswer[$i],
-                 
-                    'isValid'=> 1,
-                 
-                 'question_id'=>$question_id,
-                )
-             )->save();
-                }
-                elseif ($data[$i]['type'] == "text"){
-                  $textAnswer = ($data[$i]['data']['answer']);
-                  Answer::create(
-                 array(
-                     
-                    'answer'=> $textAnswer,
-                 
-                    'isValid'=> 1,
-                 
-                 'question_id'=>$question_id,
-                )
-             )->save();
-                }
-            }
-             
-         }
+            // }
+        }
     }
 }
