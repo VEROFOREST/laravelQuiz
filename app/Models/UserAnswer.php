@@ -13,11 +13,11 @@ class UserAnswer extends Model
      */
     public function answer()
     {
-        return $this->hasOne(Answer::class);
+        return $this->belongsTo(Answer::class);
     }
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }

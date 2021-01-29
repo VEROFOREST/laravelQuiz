@@ -24,9 +24,14 @@ class Answer extends Model
     /**
      * Get the question that owns the answer.
      */
-    public function Question()
+    public function question()
     {
         return $this->belongsTo(Answer::class);
+    }
+
+    public function useranswer()
+    {
+        return $this->hasmany(UserAnswer::class);
     }
 
 }

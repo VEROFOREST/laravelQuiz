@@ -18,14 +18,14 @@ class Question extends Model
     /**
      * Get the type that owns the question.
      */
-    public function Type()
+    public function type()
     {
         return $this->belongsTo(Type::class);
     }
     /**
      * get answers of one question
      */
-    public function Anwers()
+    public function answers()
     {
         return $this->hasMany(Answer::class);
     }

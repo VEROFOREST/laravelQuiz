@@ -20,20 +20,6 @@ class AnswersTableSeeder extends Seeder
         $path = "public/json/questions.json";
         $detail = file_get_contents($path);
         $data = json_decode($detail, true);
-
-        //  for ($i=0; $i <count($data); $i++) { 
-
-        //         if ($data[$i]['type'] == "checkbox"){
-        //       print_r($data[$i]['data']['values']);
-        //         }
-        //         elseif ($data[$i]['type'] == "radio") {
-        //               print_r($data[$i]['data']['answer']);
-        //         }
-        //         elseif ($data[$i]['type'] == "text"){
-        //             print_r($data[$i]['data']['answer']);
-        //         }
-        //  }
-
         for ($i=0; $i < count($data); $i++) {
             $question_id = DB::table('questions')->where('label', '=', $data[$i]['data']['label'])->first()->id;
 
@@ -48,7 +34,7 @@ class AnswersTableSeeder extends Seeder
 
                             'answer' => $checkboxAnswer[$y],
 
-                            'isValid' => 1,
+                            // 'isValid' => 1,
 
                             'question_id' => $question_id,
                         )
@@ -63,7 +49,7 @@ class AnswersTableSeeder extends Seeder
 
                             'answer' => $radioAnswer[$y],
 
-                            'isValid' => 1,
+                            // 'isValid' => 1,
 
                             'question_id' => $question_id,
                         )
@@ -77,7 +63,7 @@ class AnswersTableSeeder extends Seeder
 
                             'answer' => $textAnswer,
 
-                            'isValid' => 1,
+                            // 'isValid' => 1,
 
                             'question_id' => $question_id,
                         )
