@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('user.home');
+});
+// Route::post('user_register', [
+//     'uses' => 'UserController@register'
+//   ]);
+ Route::Post('user.register', [UserController::class, 'register']);
 // Route::get('/register', function () {
 //     return view('user/home.blade.php');
 // });
@@ -25,3 +30,4 @@ use Illuminate\Support\Facades\Route;
 //      return view('user/home.blade.php');
 // });
 Route::get('/question', [QuestionController::class, 'quiz']);
+

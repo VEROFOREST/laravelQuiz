@@ -3,8 +3,11 @@
 namespace App\Repositories;
 
 use App\Models\User;
+
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Request;
+
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -22,5 +25,11 @@ class UserRepository implements UserRepositoryInterface
    public function findById($user_id)
    {
        return User::where('user_id', $user_id);
+   }
+   public function register($data)
+   {
+      
+      return User::create($data)->save();
+
    }
 }
