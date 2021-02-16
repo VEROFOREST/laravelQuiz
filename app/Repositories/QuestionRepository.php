@@ -18,7 +18,7 @@ class QuestionRepository  implements QuestionRepositoryInterface
 
    public function quiz(): Collection
    {
-       $quizes = collect(Question::with('answers')->get()->shuffle());
+     $quizes = collect(Question::with('answers')->get()->random(1));
       
        return $quizes; 
    }

@@ -30,7 +30,8 @@ class QuestionController extends Controller
     {
         $quizes = $this->QuestionRepository->quiz();
         
-        return view('question.home', [
+        return view('question.home', 
+        [
             'quizzes' => $quizes,
         ]);
     }

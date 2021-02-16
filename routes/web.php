@@ -29,5 +29,5 @@ Route::get('/', function () {
 // Route::post('/user/home',function(){
 //      return view('user/home.blade.php');
 // });
-Route::get('/question', [QuestionController::class, 'quiz']);
+Route::get('/question/{id}', [QuestionController::class, 'quiz']);
 

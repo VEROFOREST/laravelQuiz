@@ -4,10 +4,10 @@
 
 <div class="row">
     <div class="col-md-6 offset-md-3 border py-2">
-        @foreach($quizzes as $quiz)
+         @foreach($quizzes as $quiz ) 
            
             <p><span class='lead'></span> {{ $quiz['label'] }}</p>
-            
+        {{dd ($quiz['label'])}}
             <p class='lead'>Réponse(s) :</p>
 
             <form>
@@ -41,7 +41,7 @@
             </div>
           
     
-        @endforeach
+        @endforeach 
 </div>
 
         <div class="py-2 text-center">

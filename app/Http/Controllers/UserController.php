@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Facades\DB;
+
 
 
 class UserController extends Controller
 {
-   private $userRepository;
-   public function __construct(UserRepositoryInterface $userRepository)
-   {
-       $this->UserRepository=$userRepository;
-   }
+    private $userRepository;
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->UserRepository = $userRepository;
+    }
 
     public function createForm()
     {
@@ -22,9 +24,14 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-         $input = $request->all();
+        $input = $request->all();
         $regUser = $this->UserRepository->register($input);
-       
-        return redirect('/question');
+        $id = DB::getPdo()->lastInsertId();
+
+        // dd($id);
+        return redirect()->action(
+            [QuestionController::class, 'quiz'],
+            ['id' => $id]
+        );
     }
 }
