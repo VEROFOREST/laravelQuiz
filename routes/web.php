@@ -3,7 +3,7 @@
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserAnswerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +29,7 @@ Route::get('/', function () {
 // Route::post('/user/home',function(){
 //      return view('user/home.blade.php');
 // });
-Route::get('/question/{id}', [QuestionController::class, 'quiz']);
+Route::get('/question/{id}', [QuestionController::class, 'showQuizz']);
+
+Route::Post('question.saveAnswer',[UserAnswerController::class, 'saveAnswer']);
 

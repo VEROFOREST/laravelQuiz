@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class UserAnswer extends Model
 {
     use HasFactory;
+    protected $fillable = [
+                            'users_id',
+                            'answers_id',
+                            'label_answer'];
+
     /**
      * get one answer for one useranswer
      */

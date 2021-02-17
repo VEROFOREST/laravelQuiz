@@ -16,7 +16,7 @@ class QuestionRepository  implements QuestionRepositoryInterface
        return Question::all();    
    }
 
-   public function quiz(): Collection
+   public function showQuizz(): Collection
    {
      $quizes = collect(Question::with('answers')->get()->random(1));
       

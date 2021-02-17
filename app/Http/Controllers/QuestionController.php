@@ -26,13 +26,16 @@ class QuestionController extends Controller
 
     // }
 
-    public function quiz()
+    public function showQuizz()
     {
-        $quizes = $this->QuestionRepository->quiz();
-        
+        $quizzes = $this->QuestionRepository->showQuizz();
+        foreach($quizzes as $quizz){
         return view('question.home', 
         [
-            'quizzes' => $quizes,
+            'quizz' => $quizz,
         ]);
+
+        }
+        
     }
 }

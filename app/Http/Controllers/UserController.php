@@ -30,7 +30,7 @@ class UserController extends Controller
 
         // dd($id);
         return redirect()->action(
-            [QuestionController::class, 'quiz'],
+            [QuestionController::class, 'showQuizz'],
             ['id' => $id]
         );
     }

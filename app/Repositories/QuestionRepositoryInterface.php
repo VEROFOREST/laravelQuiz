@@ -9,6 +9,6 @@ interface QuestionRepositoryInterface
    public function all(): Collection;
 
 
-   public function quiz(): Collection;
+   public function showQuizz(): Collection;
    
 }
