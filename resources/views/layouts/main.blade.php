@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ config('app.name') }}</title>
     
-    <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('vendor/iCheck/skins/square/_all.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <!-- <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"/> -->
+    <!-- <link href="{{ asset('vendor/iCheck/skins/square/_all.css') }}" rel="stylesheet"/> -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
     
     @yield ('css-link')
@@ -32,7 +32,7 @@
     </div>
 
     <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/iCheck/icheck.min.js') }}"></script>
     @yield ('js-link')
     

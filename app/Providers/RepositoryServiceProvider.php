@@ -9,6 +9,10 @@ use App\Repositories\UserRepositoryInterface;
 use App\Repositories\UserRepository; 
 use Illuminate\Support\ServiceProvider; 
 use App\Repositories\UserAnswerRepository;
+use App\Repositories\AnswerRepository;
+use App\Repositories\AnswerRepositoryInterface;
+
+
 
 /** 
 * Class RepositoryServiceProvider 
@@ -24,7 +28,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+          $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
        $this->app->bind(QuestionRepositoryInterface::class, QuestionRepository::class); 
        $this->app->bind(UserAnswerRepositoryInterface::class, UserAnswerRepository::class); 
        $this->app->bind(AnswerRepositoryInterface::class, AnswerRepository::class); 

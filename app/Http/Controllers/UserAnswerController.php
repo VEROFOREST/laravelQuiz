@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
+use App\Models\UserAnswer;
 
 
 use App\Repositories\UserAnswerRepositoryInterface;
@@ -20,42 +21,37 @@ class UserAnswerController extends Controller
         $this->UserAnswerRepository = $userAnswerRepository;
     }
 
-
-
     public function saveAnswer(Request $request)
     {
-        $typeAnswer = $request->typeAnswerHidden;
-
-        if ($typeAnswer === "1") {
-            $answer = $request->textanswer;
-            $request->except('_token');
-            $userId = $request->userHidden;
-            $data = ['users_id' => $userId, 'answers_id' => null, 'label_answer' => $answer];
-            $registerAnswer = $this->UserAnswerRepository->saveAnswer($data);
-        }
-        elseif ($typeAnswer === "2")
-        {
-            $answers = $request->checkboxanswer;
-            foreach ($answers as $answer) {
-
-                $request->except('_token');
+            $arrayChecked = $request->answerUser;
+            
+            foreach ($arrayChecked as $answerChecked) 
+            {
                 $userId = $request->userHidden;
-                $data = ['users_id' => $userId, 'answers_id' => $answer];
-                $registerAnswer = $this->UserAnswerRepository->saveAnswer($data);
+                if(intval($answerChecked) === 0)
+                {
+                    $input = ['users_id' => $userId, 'answers_id' => null, 'label_answer' => $arrayChecked[0]];
+                    
+                } else 
+                {
+                    $input = ['users_id' => $userId, 'answers_id' => $answerChecked];
+                }
+                
+                $this->UserAnswerRepository->saveAnswer($input);
+                
+                
+                 $idAnswer = UserAnswer::latest()->get()->first()->answers_id;
+                //  dd($idAnswer);
             }
-        } 
-        else 
-        {
-            $answers = $request->radioanswer;
-            foreach ($answers as $answer) {
-
-                $request->except('_token');
-                $userId = $request->userHidden;
-                $data = ['users_id' => $userId, 'answers_id' => $answer];
-                $registerAnswer = $this->UserAnswerRepository->saveAnswer($data);
-            }
-        }
-
-        
+        return redirect()->action(
+            [AnswerController::class, 'showAnswer'],
+            ['userId' => $userId,
+            'idAnswer'=>$idAnswer,]
+            
+        );
+                
     }
+        
+    
+
 }

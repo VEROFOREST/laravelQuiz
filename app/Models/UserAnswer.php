@@ -18,11 +18,11 @@ class UserAnswer extends Model
      */
     public function answer()
     {
-        return $this->belongsTo(Answer::class);
+        return $this->belongsTo(Answer::class, 'answers_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'users_id');
     }
 }
