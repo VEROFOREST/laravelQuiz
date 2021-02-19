@@ -23,9 +23,7 @@
             @foreach ($userAnswers as $UserAnswer)
                 <p>{{$UserAnswer->answer->answer}} </p>
             @endforeach
-            @foreach ($goodAnswers as $good)
-
-            @endforeach
+           
    
             @if ($choiceAnswerId === $goodAnswerId)
                 <h3> Winner</h3>

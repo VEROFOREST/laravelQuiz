@@ -41,17 +41,17 @@ class UserAnswerController extends Controller
             } else {
                 $input = ['users_id' => $userId, 'answers_id' => $answerChecked];
             }
-        }
         $this->UserAnswerRepository->saveAnswer($input);
 
+        }
         $userAnswers = UserAnswer::with('User')->where('users_id', $userId)->get();
-        // dd($userAnswers);
+        
 
         foreach ($userAnswers as $a) {
             $choiceAnswerId = $a->answers_id; {
                 $choiceText = $a->label_answer;
             }
-            $choiceAnswers = Answer::with('Question')->where('id', $choiceAnswerId)->get();
+            // $choiceAnswers = Answer::with('Question')->where('id', $choiceAnswerId)->get();
         }
         $goodAnswers = Question::find($questionId)->answers->where('isValid', 1);
         foreach ($goodAnswers as $good) {
@@ -66,7 +66,7 @@ class UserAnswerController extends Controller
                 'questionId' => $questionId,
                 'questionLabel' => $questionLabel,
                 'userAnswers' => $userAnswers,
-                'ChoiceAnswers' => $choiceAnswers,
+                // 'ChoiceAnswers' => $choiceAnswers,
                 'goodAnswers' => $goodAnswers,
                 'choiceText' => $choiceText,
                 'typeQuestion'=>$typeQuestion,
