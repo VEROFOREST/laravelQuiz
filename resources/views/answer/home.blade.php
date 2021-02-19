@@ -6,36 +6,47 @@
 
         <!-- </p> {{request()->route('idAnswer')}} <p>  -->
 
-        <p> {{$questionLabel}} </p>
+        <h3 class="text-center"> {{$questionLabel}} </h3>
+        <div class="row justify-content-around">
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    @if(@isset($choiceText))
+                    <h5 class="card-title">YOUR ANSWER(S)</h5>
 
-        <p>YOUR ANSWER(S)</p>
-        @if(@isset($choiceText))
+                    <p class="card-text">{{ $choiceText}}</p>
 
-            {{ $choiceText}}
-            @if ($choiceText === $textAnswer)
-                    <h3> Winner</h3>
-                @else
-                    <h3> Looser</h3>
-            @endif
-           
-        @else
+                    @if ($choiceText === $textAnswer)
+                    <h3 class="card-text text-info"> Right</h3>
+                    @else
+                    <h3 class="card-text text-danger"> Wrong</h3>
+                    @endif
+                    @else
 
-            @foreach ($userAnswers as $UserAnswer)
-                <p>{{$UserAnswer->answer->answer}} </p>
-            @endforeach
-           
-   
-            @if ($choiceAnswerId === $goodAnswerId)
-                <h3> Winner</h3>
-            @else
-                <h3> Looser</h3>
-            @endif
-        @endif
-        <p> CORRECT ANSWER(S)</p>
-        @foreach ($goodAnswers as $good)
-            <p>{{$good->answer}} </p>
+                    <h5 class="card-title">YOUR ANSWER(S)</h5>
+                    @foreach ($userAnswers as $UserAnswer)
 
-        @endforeach
+                    <p class="card-text">{{$UserAnswer->answer->answer}}</p>
+                    @endforeach
+                    @if ($choiceAnswerId === $goodAnswerId)
+                        <h3 class="card-text text-info"> Right</h3>
+                    @else
+                     <h3 class="card-text text-danger"> Wrong</h3>
+                    @endif
+
+                    @endif
+                </div>
+            </div>
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">CORRECT ANSWER(S)</h5>
+                    @foreach ($goodAnswers as $good)
+                    <p class="card-text">{{$good->answer}}</p>
+                    @endforeach
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </div>
 

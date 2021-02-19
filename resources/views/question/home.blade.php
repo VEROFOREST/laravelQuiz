@@ -48,7 +48,7 @@
             @endforeach
 
             <div class="py-2 text-center">
-                <button id="btn-answer" type="submit" class="btn btn-sm btn-primary">Check my answer </button>
+                <button id="btn-answer" type="submit" class="btn btn-sm btn-primary">Check my answer !</button>
             </div>
         </form>
 
