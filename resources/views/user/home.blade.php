@@ -6,14 +6,18 @@
         {{ Form::open(array ('action' => ['UserController@register'], 'method' => 'POST')) }}
         {{Form::label('name')}}
         {{Form::text('name')}}
-        <p>{{Form :: label ('Email')}}
-            {{Form ::email('email')}}
-        </p>
+        <div>
+        {{Form :: label ('Email')}}
+        {{Form ::email('email')}}
+
+        </div>
+     <div>
+    {{Form::submit('Go to the quizz !',['class' => 'btn btn-primary'])}}
+
+     </div>   
     </div>
 </div>
 
-<div>
-    {{Form::submit('Go to the quizz !',['class' => 'btn btn-success'])}}
-</div>
+
 {{ Form::close() }}
 @endsection

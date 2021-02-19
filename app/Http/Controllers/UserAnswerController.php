@@ -45,6 +45,7 @@ class UserAnswerController extends Controller
         $this->UserAnswerRepository->saveAnswer($input);
 
         $userAnswers = UserAnswer::with('User')->where('users_id', $userId)->get();
+        dd($userAnswers);
 
         foreach ($userAnswers as $a) {
             $choiceAnswerId = $a->answers_id; {
@@ -68,7 +69,7 @@ class UserAnswerController extends Controller
                 'ChoiceAnswers' => $choiceAnswers,
                 'goodAnswers' => $goodAnswers,
                 'choiceText' => $choiceText,
-                
+                'typeQuestion'=>$typeQuestion,
                 'goodAnswerId' => $goodAnswerId,
                 'choiceAnswerId' => $choiceAnswerId,
                 'textAnswer' => $textAnswer,
