@@ -20,23 +20,16 @@ class AnswerController extends Controller
         return $this->AnswerRepository = $answerRepository;
     }
 
-    // public function index()
-    // {
-    //     $allAnswers = collect ($this->AnswerRepository->all());
-    //     return view('Answer.home', [
-    //         'allAnswers' => $allAnswers,
-    //         ]);
+    
 
-    // }
-
-    public function showAnswer(Request $request )
+   public function showAnswer(Request $request )
     {
         $idAnswer = $request->route('idAnswer');
         $idUser = $request->route('userId');
         
         $allAnswers = UserAnswer::with('User')->where('users_id',$idUser)->get();
         // dd($allAnswers);
-        // foreach ($allAnswers as $a){
+        // foreach ($allAns pwers as $a){
             
         //    $choiceAnswerId = $a->answers_id;
         //    $choiceAnswers = $answers = Answer::with('Question')->where('id',$choiceAnswerId)->get();
@@ -56,11 +49,11 @@ class AnswerController extends Controller
         [
             'answer' => $answer ,
             'goodAnswers'=>$goodAnswers,
-            // 'choiceAnswers'=>$choiceAnswers,
+        
+            
             'allAnswers'=>$allAnswers,
             
         ]);
-        
            
 
        

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
 use App\Models\UserAnswer;
+use App\Models\Answer;
+use App\Models\Question;
+
+
 
 
 use App\Repositories\UserAnswerRepositoryInterface;
@@ -15,7 +19,7 @@ use PhpParser\Node\Stmt\Foreach_;
 
 class UserAnswerController extends Controller
 {
-    
+
     public function __construct(UserAnswerRepositoryInterface $userAnswerRepository)
     {
         $this->UserAnswerRepository = $userAnswerRepository;
@@ -23,35 +27,53 @@ class UserAnswerController extends Controller
 
     public function saveAnswer(Request $request)
     {
-            $arrayChecked = $request->answerUser;
-            
-            foreach ($arrayChecked as $answerChecked) 
-            {
-                $userId = $request->userHidden;
-                if(intval($answerChecked) === 0)
-                {
-                    $input = ['users_id' => $userId, 'answers_id' => null, 'label_answer' => $arrayChecked[0]];
-                    
-                } else 
-                {
-                    $input = ['users_id' => $userId, 'answers_id' => $answerChecked];
-                }
-                
-                $this->UserAnswerRepository->saveAnswer($input);
-                
-                
-                 $idAnswer = UserAnswer::latest()->get()->first()->answers_id;
-                //  dd($idAnswer);
-            }
-        return redirect()->action(
-            [AnswerController::class, 'showAnswer'],
-            ['userId' => $userId,
-            'idAnswer'=>$idAnswer,]
-            
-        );
-                
-    }
-        
-    
+        $arrayChecked = $request->answerUser;
 
+        foreach ($arrayChecked as $answerChecked) {
+            $userId = $request->userHidden;
+            $questionLabel = $request->questionHidden;
+
+
+            $questionId = $request->idHidden;
+
+            if (intval($answerChecked) === 0) {
+                $input = ['users_id' => $userId, 'answers_id' => null, 'label_answer' => $arrayChecked[0]];
+            } else {
+                $input = ['users_id' => $userId, 'answers_id' => $answerChecked];
+            }
+        }
+        $this->UserAnswerRepository->saveAnswer($input);
+
+        $userAnswers = UserAnswer::with('User')->where('users_id', $userId)->get();
+
+        foreach ($userAnswers as $a) {
+            $choiceAnswerId = $a->answers_id; {
+                $choiceText = $a->label_answer;
+            }
+            $choiceAnswers = Answer::with('Question')->where('id', $choiceAnswerId)->get();
+        }
+        $goodAnswers = Question::find($questionId)->answers->where('isValid', 1);
+        foreach ($goodAnswers as $good) {
+            $goodAnswerId = $good->id;
+            $textAnswer = $good->answer;
+        }
+        $typeQuestion = Question::find($questionId)->type;
+
+        return view(
+            'answer.home',
+            [
+                'questionId' => $questionId,
+                'questionLabel' => $questionLabel,
+                'userAnswers' => $userAnswers,
+                'ChoiceAnswers' => $choiceAnswers,
+                'goodAnswers' => $goodAnswers,
+                'choiceText' => $choiceText,
+                
+                'goodAnswerId' => $goodAnswerId,
+                'choiceAnswerId' => $choiceAnswerId,
+                'textAnswer' => $textAnswer,
+
+            ]
+        );
+    }
 }

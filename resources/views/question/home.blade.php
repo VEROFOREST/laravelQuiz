@@ -14,6 +14,8 @@
 
             <input class="form-hidden" type="hidden" name="userHidden" id="" value="{{request()->route('id')}}">
             <input class="form-hidden" type="hidden" name="questionHidden" id="" value="{{$quizz['label']}}">
+            <input class="form-hidden" type="hidden" name="idHidden" id="" value="{{$quizz['id']}}">
+
             
             @foreach($quizz['answers'] as $answer)
 

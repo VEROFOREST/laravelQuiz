@@ -15,7 +15,5 @@
 <div>
     {{Form::submit('Go to the quizz !',['class' => 'btn btn-success'])}}
 </div>
-    <!-- @csrf_field  -->
-    <!-- <input name="_token" type="hidden" value="{{ csrf_token() }}"> -->
 {{ Form::close() }}
 @endsection
