@@ -10,5 +10,11 @@ interface QuestionRepositoryInterface
 
 
    public function showQuizz(): Collection;
+
+   public function findByIdCorrectAnswers($id);
+
+    public function findByType($id);
+    public function findByLabel($id);
+
    
 }

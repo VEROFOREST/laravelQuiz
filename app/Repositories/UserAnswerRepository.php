@@ -14,5 +14,11 @@ class UserAnswerRepository  implements UserAnswerRepositoryInterface
      
        return UserAnswer::create($data)->save();
    }
+public function UserAnswershow($userId)
+    
+    {
+        return
+        UserAnswer::with('User')->where('users_id', $userId)->get();
 
+    }
 }

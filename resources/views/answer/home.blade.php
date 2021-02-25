@@ -16,9 +16,12 @@
                     <p class="card-text">{{ $choiceText}}</p>
 
                     @if ($choiceText === $textAnswer)
-                    <h3 class="card-text text-info"> Right</h3>
+                    <!-- <h3 class="card-text text-info"> Right</h3> -->
+                    <h3 class="card-text material-icons text-success" style="font-size:50px">check_circle</h3>
+								
                     @else
-                    <h3 class="card-text text-danger"> Wrong</h3>
+                    <!-- <h3 class="card-text text-danger"> Wrong</h3> -->
+                   <h3 class="card-text material-icons text-danger" style="font-size:50px">highlight_off</h3>
                     @endif
                     @else
 
@@ -28,9 +31,11 @@
                     <p class="card-text">{{$UserAnswer->answer->answer}}</p>
                     @endforeach
                     @if ($choiceAnswerId === $goodAnswerId)
-                        <h3 class="card-text text-info"> Right</h3>
+                        <!-- <h3 class="card-text text-info"> Right</h3> -->
+                        <h3 class="card-text material-icons text-success" style="font-size:50px">check_circle</h3>
                     @else
-                     <h3 class="card-text text-danger"> Wrong</h3>
+                     <!-- <h3 class="card-text text-danger"> Wrong</h3> -->
+                     <h3 class="card-text material-icons text-danger" style="font-size:50px">highlight_off</h3>
                     @endif
 
                     @endif

@@ -7,9 +7,9 @@ use Illuminate\Support\Collection;
 interface AnswerRepositoryInterface
 {
    public function all(): Collection;
-public function findById($user_id);
+public function findById($answer_id);
   
 
-   public function showAnswer($data);
+   public function showAnswer($answer_id);
    
 }

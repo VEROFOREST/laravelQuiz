@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ config('app.name') }}</title>
     
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"/>
     <!-- <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"/> -->
     <!-- <link href="{{ asset('vendor/iCheck/skins/square/_all.css') }}" rel="stylesheet"/> -->
@@ -30,7 +31,7 @@
 
         </footer>
     </div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/iCheck/icheck.min.js') }}"></script>

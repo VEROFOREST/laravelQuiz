@@ -23,4 +23,18 @@ class QuestionRepository  implements QuestionRepositoryInterface
        return $quizes; 
    }
 
+   public function findByIdCorrectAnswers($id)
+   {
+     return Question::find($id)->answers->where('isValid', 1);
+   }
+  public function findByType($id)
+  {
+   return Question::find($id)->type;
+  }
+
+  public function findByLabel($id)
+  {
+    return Question::find($id)->label;
+
+  }
 }

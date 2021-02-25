@@ -17,12 +17,12 @@ class AnswerRepository  implements AnswerRepositoryInterface
    }
    public function findById($answer_id)
    {
-       return User::where('answer_id', $answer_id);
+       return Answer::where('id', $answer_id);
    }
 
-    public function showAnswer($data)
+    public function showAnswer($answer_id)
     {
-        $answer = Answer::with('Question')->where('id','$idAnswer')->get();
+        $answer = Answer::with('Question')->where('id','$answer_id')->get();
 
            
                 return $answer;

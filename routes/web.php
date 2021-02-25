@@ -32,6 +32,9 @@ Route::get('/', function () {
 Route::get('/question/{id}', [QuestionController::class, 'showQuizz']);
 
 Route::Post('question.saveAnswer',[UserAnswerController::class, 'saveAnswer']);
+Route::get('/answer/{userId}/{questionId}',[UserAnswerController::class, 'UserAnswershow']);
 
-Route::get('/answer', [AnswerController::class, 'showAnswer']);
+
+
+// Route::get('/answer', [AnswerController::class, 'showAnswer']);
 
